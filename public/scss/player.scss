@@ -71,12 +71,26 @@
 		font-size: 4em;
 		width: 120px;
 		margin-top: 60px;
+		background-color: rgba(255,255,255,0.1);
+
+		&:hover {
+			background-color: rgba(255,255,255,0.4);
+			color: white;
+		}
+
+		&:active, &:focus {
+			color: white;
+		}
 
 		&.glyphicon-play {
 			padding: 24px 0;
 			margin-top: 46px;
 			border-radius: 6px;
 			background-color: #00A99D;
+
+			&:hover {
+				background-color: #00A99D;
+			}
 		}
 	}
 	#current_info {
