@@ -7,9 +7,7 @@ jukebox.service("RequestedSongs", function($http) {
       $http.jsonp("http://airtrill.com/texts?callback=JSON_CALLBACK").
         success(function(data, status, headers, config) {
           data = _.filter(data, function(text) { return text.date > 1393168096; })
-          debugger;
           data = _.sortBy(data, 'date');
-          debugger;
           count = data.length;
           $.each(data, function(i, query) {
              SC.get('/tracks', { q: query.song }, function(tracks) {
