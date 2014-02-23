@@ -83,35 +83,41 @@
 
         <div id="app" ng-controller="McJukeboxControl">
           
-          <div id="playlist">
-            <div id="on_deck_info">
-              
+          <!-- <div id="register" ng-controller="McJukeboxRegisterControl">
+            <input type="text" ng-hide="true" ng-model="country" placeholder="Country Code"></input>
+            <input type="text" ng-model="room_name" placeholder="Room Name"></input>
+            <button ng-click="register()">Join</button>
+            <div ng-hide="!haveCookie()" id="account_info">
+              <p>Text <span>{{ phone }}</span> to request songs at {{ room_name }}'s party.</p>
             </div>
-            
-            <ul id="playlist-items" ng-controller="McJukeboxPlaylistControl" ng-init="init()">
-              <li ng-repeat="item in playlist">
-                <a href="#" data-url="{{ item.permalink_url }}" ng-click="loadTrack($event)">{{ item.title }}</a>
-              </li>
-            </ul>
-          </div>
+          </div> -->
           
-          <div id="current" ng-init="init()" ng-controller="McJukeboxCurrentControl">
-            
+          <div id="playlist" ng-controller="McJukeboxPlaylistControl">
             <button ng-click="pause()">Pause</button>
             <button ng-click="play()">Play</button>
-            <button ng-click="next()">Skip</button>
+            <button ng-click="skip()">Skip</button>
             
-            <div id="current_info">
-              <img ng-src="{{ artwork }}"></img>
-              <p class="title">{{ title }}</p>
-            </div>
-            
-            <div ng-controller="McJukeboxSoundCloudPlayerControl" ng-init="init()">
-              <iframe ng-hide="true" id="sc-widget" ng-src="{{track_url}}" width="100%" height="465" scrolling="no" frameborder="no"></iframe>
+            <ol id="playlist-items" ng-init="init()">
+              <li ng-repeat="item in playlist">
+                {{ item.title }}
+              </li>
+            </ul>
+
+            <div id="current" ng-init="init()" ng-controller="McJukeboxCurrentControl">
+
+              <div id="current_info">
+                <img ng-src="{{ artwork }}"></img>
+                <p class="title">{{ title }}</p>
+              </div>
+
+              <div ng-controller="McJukeboxSoundCloudPlayerControl" ng-init="init()">
+                <iframe id="sc-widget" ng-src="{{track_url}}" width="100%" height="465" scrolling="no" frameborder="no"></iframe>
+              </div>
             </div>
           </div>
-        </div>
-
+            
+          </div>
+          
       </div>
 
     </div>
@@ -130,6 +136,8 @@
 
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript"> changeIt();</script>
   </body>
