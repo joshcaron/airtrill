@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="text/javascript">
+      var totalCount = 6;
+      function changeIt() 
+      {
+        var num = Math.ceil( Math.random() * totalCount );
+        var slogan = ['Crowdsource your playlist.', 'Enjoy the music.', 'Crowdsource your playlist.', 'Enjoy the music.', 'Crowdsource your playlist.', 'Enjoy the music.'];
+        $('body').css('background-image', 'url(img/' + num + '.jpg)');
+        $('.cover-heading').text(slogan[num - 1]);
+      }
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,13 +18,14 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>juicebox</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="src/cover.css" rel="stylesheet">
+    <link href="cover.css" rel="stylesheet">
+    <link href="cover_extra.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -36,28 +47,20 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">juicebox.io</h3>
+              <h2 class="masthead-brand">juicebox.io</h3>
               <ul class="nav masthead-nav">
                 <li class="active"><a href="#">Playlist</a></li>
-                <li><a href="#">Resources</a></li>
-              </li>
+                <li><a href="#">More</a></li>
               </ul>
             </div>
           </div>
-
           <div class="inner cover">
-            <h1 class="cover-heading">Listen With Friends</h1>
-            <p class="lead">Spice up your event. Crowdsource your playlist.</p>
+            <h1 class="cover-heading">Those With Slow-To-Load JQuery Will Know</h1>
+            <p class="lead">Tell me more!</p>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
+              <a href="" class="btn btn-lg btn-default">CLICK HERE</a>
             </p>
           </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -66,9 +69,20 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed at the end of the document so the pages load faster --> 
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48289766-1', 'gizdarski.com');
+      ga('send', 'pageview');
+
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
+    <script type="text/javascript"> changeIt();</script>
   </body>
 </html>
