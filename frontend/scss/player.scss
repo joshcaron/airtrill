@@ -1,0 +1,80 @@
+#playlist {
+	#playlist-items {
+		
+		width: 40%;
+		float: right;list-style-type: none;
+		text-transform: uppercase;
+		margin: 0;
+		padding: 0 20px;
+		clear: both;
+		max-height: 500px;
+		overflow: scroll;
+
+		li {
+			text-align: left;
+			padding: 10px 40px;
+			display: block;
+			letter-spacing: 2px;
+			font-size: 1.7em;
+
+			&:nth-child(even) {
+				background-color: rgba(80, 80, 80, 0.6);
+			}
+
+			&:nth-child(odd) {
+				background-color: rgba(120, 120, 120, 0.8);
+			}
+
+			a {
+				display: block;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+.cover {
+	width: 40%;
+	float: right;
+}
+
+.cover-container {
+	text-align: left;
+}
+
+.number {
+	font-size: 3em;
+}
+
+
+#current {
+	width: 60%;
+	float: left;
+	position: absolute;
+
+	.controls {
+		// position: fixed;
+		// top: 50%;
+		// left: calc(30% - 77px);
+	}
+
+	& > div.controls.btn-group > button.btn.btn-lg {
+		font-size: 6em;
+		width: 200px;
+	}
+	#current_info {
+		.title {
+			font-size: 5em;
+			margin: 0;
+			// height: 5em;
+			// width: 100%;
+		}
+		.artwork {
+			float: left;
+			width: 200px;
+			height: 200px;
+		}
+	}
+}

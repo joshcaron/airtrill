@@ -64,18 +64,15 @@
           <div class="cover">
             <h1 class="cover-heading"></h1>
             <p class="number">{{ number }}</p>
-            <p class="lead">
+       <!--      <p class="lead">
               <a href="" class="btn btn-lg btn-default start-btn">Begin Listening</a>
-            </p>
+            </p> -->
           </div>
 
           <div id="app" ng-controller="McJukeboxControl">
 
-          <div id="playlist" ng-controller="McJukeboxPlaylistControl" class="controls btn-group">
-            <button class="btn btn-lg glyphicon glyphicon-pause" ng-click="pause()"></button>
-            <button class="btn btn-lg glyphicon glyphicon-play" ng-click="play()"></button>
-            <button class="btn btn-lg glyphicon glyphicon-forward" ng-click="skip()"></button>
-            
+          <div id="playlist" ng-controller="McJukeboxPlaylistControl">
+         
 
             <div id="current" ng-init="init()" ng-controller="McJukeboxCurrentControl">
 
@@ -83,7 +80,11 @@
                 <img ng-src="{{ artwork }}"></img>
                 <p class="title">{{ title }}</p>
               </div>
-
+ <div class="controls btn-group">
+            <button class="btn btn-lg glyphicon glyphicon-pause" ng-click="pause()"></button>
+            <button class="btn btn-lg glyphicon glyphicon-play" ng-click="play()"></button>
+            <button class="btn btn-lg glyphicon glyphicon-forward" ng-click="skip()"></button>
+            </div>
 
               <div ng-controller="McJukeboxSoundCloudPlayerControl" ng-init="init()">
                 <iframe ng-hide="true" id="sc-widget" ng-src="{{track_url}}" width="100%" height="465" scrolling="no" frameborder="no"></iframe>
