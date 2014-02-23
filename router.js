@@ -5,11 +5,23 @@ var Song = function(data) {
 	}
 }
 
+var client = require('twilio')('AC98eb705703556ad95bc5cf7e4b1cbc8b', 'a198863452f1e840159ff4f102556c7f');
+
 exports.setup = function(app) {
 
-	app.get('/test', function(request, result) {
-		var client = require('twilio')('AC98eb705703556ad95bc5cf7e4b1cbc8b', 'a198863452f1e840159ff4f102556c7f');
+	app.get('/new', function(request, result) {
+		var country = request.query.country;
+		var phone_numbers = [];
+		client.availablePhoneNumbers(country).local.list({ sms_enabled: true }, function(err, numbers) {
+			numbers["available_phone_numbers"].forEach(function(num) {
+				phone_numbers.push(num);
+			});
+			result.send(phone_numbers);
+		});
 
+	});
+
+	app.get('/test', function(request, result) {
 		//Send an SMS text message
 		client.sendMessage({
 
@@ -41,18 +53,12 @@ exports.setup = function(app) {
 	});
 
 	app.get('/texts', function(request, results) {
-		var client = require('twilio')('AC98eb705703556ad95bc5cf7e4b1cbc8b', 'a198863452f1e840159ff4f102556c7f');
-		var callback = function() {
-			var messages = client.messages.list(function(err, data) {
-				var songs = [];
-				data.messages.forEach(function(msg) {
-					songs.push(new Songmsg));	
-				});
-				results.send(songs);
+		var messages = client.messages.list(function(err, data) {
+			var songs = [];
+			data.messages.forEach(function(msg) {
+				songs.push(new Song(msg));	
 			});
-		};
-
-		callback();
-
+			results.send(songs);
+		});
 	});
 }
