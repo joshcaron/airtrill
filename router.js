@@ -1,7 +1,9 @@
 var Song = function(data) {
+	var moment = require('moment');
+	var date = moment(data.date_created).unix();
 	return {
 		song: data.body,
-		date: data.date_created
+		date: date
 	}
 }
 
