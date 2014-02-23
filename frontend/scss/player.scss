@@ -1,4 +1,5 @@
 #playlist {
+	font-family: 'Open Sans';
 	#playlist-items {
 		
 		width: 40%;
@@ -38,6 +39,11 @@
 .cover {
 	width: 40%;
 	float: right;
+
+	.cover-heading {
+		font-weight: 200;
+		text-transform: lowercase;
+	}
 }
 
 .cover-container {
@@ -61,19 +67,25 @@
 	}
 
 	& > div.controls.btn-group > button.btn.btn-lg {
-		font-size: 6em;
-		width: 200px;
+		font-size: 4em;
+		width: 120px;
+		margin-top: 60px;
+
+		&.glyphicon-play {
+			padding: 24px 0;
+			margin-top: 46px;
+			border-radius: 6px;
+			background-color: #00A99D;
+		}
 	}
 	#current_info {
 		.title {
-			font-size: 5em;
+			font-size: 4em;
 			margin: 0;
 			// height: 5em;
 			// width: 100%;
 		}
-		.artwork {
-			float: left;
-			width: 200px;
+		.album-art {
 			height: 200px;
 		}
 	}

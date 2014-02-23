@@ -1,31 +1,36 @@
-#playlist #playlist-items {
-  width: 40%;
-  float: right;
-  list-style-type: none;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 0 20px;
-  clear: both;
-  max-height: 500px;
-  overflow: scroll; }
-  #playlist #playlist-items li {
-    text-align: left;
-    padding: 10px 40px;
-    display: block;
-    letter-spacing: 2px;
-    font-size: 1.7em; }
-    #playlist #playlist-items li:nth-child(even) {
-      background-color: rgba(80, 80, 80, 0.6); }
-    #playlist #playlist-items li:nth-child(odd) {
-      background-color: rgba(120, 120, 120, 0.8); }
-    #playlist #playlist-items li a {
-      display: block; }
-      #playlist #playlist-items li a:hover {
-        text-decoration: none; }
+#playlist {
+  font-family: 'Open Sans'; }
+  #playlist #playlist-items {
+    width: 40%;
+    float: right;
+    list-style-type: none;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0 20px;
+    clear: both;
+    max-height: 500px;
+    overflow: scroll; }
+    #playlist #playlist-items li {
+      text-align: left;
+      padding: 10px 40px;
+      display: block;
+      letter-spacing: 2px;
+      font-size: 1.7em; }
+      #playlist #playlist-items li:nth-child(even) {
+        background-color: rgba(80, 80, 80, 0.6); }
+      #playlist #playlist-items li:nth-child(odd) {
+        background-color: rgba(120, 120, 120, 0.8); }
+      #playlist #playlist-items li a {
+        display: block; }
+        #playlist #playlist-items li a:hover {
+          text-decoration: none; }
 
 .cover {
   width: 40%;
   float: right; }
+  .cover .cover-heading {
+    font-weight: 200;
+    text-transform: lowercase; }
 
 .cover-container {
   text-align: left; }
@@ -38,12 +43,16 @@
   float: left;
   position: absolute; }
   #current > div.controls.btn-group > button.btn.btn-lg {
-    font-size: 6em;
-    width: 200px; }
+    font-size: 4em;
+    width: 120px;
+    margin-top: 60px; }
+    #current > div.controls.btn-group > button.btn.btn-lg.glyphicon-play {
+      padding: 24px 0;
+      margin-top: 46px;
+      border-radius: 6px;
+      background-color: #00A99D; }
   #current #current_info .title {
-    font-size: 5em;
+    font-size: 4em;
     margin: 0; }
-  #current #current_info .artwork {
-    float: left;
-    width: 200px;
+  #current #current_info .album-art {
     height: 200px; }
