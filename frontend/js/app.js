@@ -6,11 +6,12 @@ jukebox.service("RequestedSongs", function($http) {
       songs = []
       $http.jsonp("http://airtrill.com/texts?callback=JSON_CALLBACK").
         success(function(data, status, headers, config) {
+          console.log(data);
           data = _.filter(data, function(text) { return text.date > 1393168096; })
-          data = _.sortBy(data, 'date');
           count = data.length;
           $.each(data, function(i, query) {
              SC.get('/tracks', { q: query.song }, function(tracks) {
+               tracks[0].request_date = parseInt(query.date);
                songs.push(tracks[0]);
                if (!--count) callback(songs);
              });
@@ -98,6 +99,8 @@ jukebox.controller('McJukeboxPlaylistControl', function($scope, $timeout, Reques
     $timeout(function() {
       RequestedSongs.getRequestedSongs(function(songs) {
         $scope.playlist = songs;
+        $scope.playlist.sort(function(i1, i2) { return i1.request_date - i2.request_date; })
+        
         $scope.playlist_queue = $scope.playlist_ids = _.pluck($scope.playlist, 'id');
         $scope.$apply();
         
@@ -105,7 +108,7 @@ jukebox.controller('McJukeboxPlaylistControl', function($scope, $timeout, Reques
           popSongStack();
           $scope.first_load = false;
         }
-        
+        $scope.periodicRequest();
         $scope.$apply();
       });
     }, 1000)
@@ -115,7 +118,6 @@ jukebox.controller('McJukeboxPlaylistControl', function($scope, $timeout, Reques
     $scope.skipped_tracks.push($scope.current_track_id);
     $scope.playlist_queue = _.difference($scope.playlist_queue, $scope.skipped_tracks);
     $scope.current_track_id = _.first($scope.playlist_queue);
-    console.log($scope.playlistToDisplay());
     $scope.$apply();
   };
   
