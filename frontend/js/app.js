@@ -4,10 +4,14 @@ jukebox.service("RequestedSongs", function($http) {
   return {
     getRequestedSongs: function(callback) {
       songs = []
-      $http.jsonp("http://music.turtles.io/texts?callback=JSON_CALLBACK").
+      $http.jsonp("http://airtrill.com/texts?callback=JSON_CALLBACK").
         success(function(data, status, headers, config) {
+          data = _.filter(data, function(text) { return text.date > 1393168096; })
+          debugger;
+          data = _.sortBy(data, 'date');
+          debugger;
           count = data.length;
-          $.each(_.sortBy(data, 'date'), function(i, query) {
+          $.each(data, function(i, query) {
              SC.get('/tracks', { q: query.song }, function(tracks) {
                songs.push(tracks[0]);
                if (!--count) callback(songs);
@@ -24,7 +28,7 @@ jukebox.service("RequestedSongs", function($http) {
 jukebox.service("AccountService", function($http) {
   return {
     registerAccount: function(country, name, callback) {
-      $http.jsonp("http://music.turtles.io/new_account?country=" + country + "&name=" + name + "&callback=JSON_CALLBACK").
+      $http.jsonp("http://airtrill.com/new_account?country=" + country + "&name=" + name + "&callback=JSON_CALLBACK").
         success(function(data, status, headers, config) {
           callback(data);
         }).
@@ -73,7 +77,7 @@ jukebox.controller('McJukeboxCurrentControl', function ($scope) {
   $scope.$on('trackPlaying', function(e, songInfo) {
     if (songInfo) {
       $scope.title = songInfo.title;
-      $scope.artwork = songInfo.artwork_url;
+      $scope.artwork = songInfo.artwork_url ? songInfo.artwork_url : "";
       $scope.$apply();
     }
   });
@@ -100,7 +104,6 @@ jukebox.controller('McJukeboxPlaylistControl', function($scope, $timeout, Reques
         $scope.$apply();
         
         if ($scope.first_load) {
-          $scope.current_track_id = _.first($scope.playlist).id;
           popSongStack();
           $scope.first_load = false;
         }
@@ -122,7 +125,7 @@ jukebox.controller('McJukeboxPlaylistControl', function($scope, $timeout, Reques
   
   $scope.playlistToDisplay = function() {
     _.filter($scope.playlist, function(track) {
-      _.contains($scope.playlist_queue, track.id);
+      return _.contains($scope.playlist_queue, track.id);
     });
   }
 
@@ -161,6 +164,7 @@ jukebox.controller('McJukeboxSoundCloudPlayerControl', function($scope, $sce) {
       $scope.track_url = $sce.trustAsResourceUrl($scope.base_url + playSong.permalink_url)
       widget().load($scope.track_url, {callback: function() {
         widget().bind(SC.Widget.Events.FINISH, function() {
+          console.log("Song done");
           $scope.$emit('songFinished');
         })
       
@@ -170,7 +174,7 @@ jukebox.controller('McJukeboxSoundCloudPlayerControl', function($scope, $sce) {
       }});
     }
   });
-
+  
   $scope.$on('pause', function() {
     widget().pause();
   });
