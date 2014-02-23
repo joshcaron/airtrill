@@ -1,0 +1,10 @@
+html,
+body {
+  height: 100%;
+  width: auto;
+  background: #000;
+  -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
