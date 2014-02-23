@@ -17,4 +17,8 @@ var router = require("./router.js");
 router.setup(app);
 
 // Launch the server
-app.listen(8888);
+var server = app.listen(8888);
+server.on('connection', function(socket) {
+	console.log("New connection.");
+	socket.setTimeout(30 * 1000);
+});
