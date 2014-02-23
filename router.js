@@ -9,16 +9,44 @@ var client = require('twilio')('AC98eb705703556ad95bc5cf7e4b1cbc8b', 'a198863452
 
 exports.setup = function(app) {
 
-	app.get('/new', function(request, result) {
+	app.get('/new_number', function(request, result) {
 		var country = request.query.country;
 		var phone_numbers = [];
 		client.availablePhoneNumbers(country).local.list({ sms_enabled: true }, function(err, numbers) {
-			numbers["available_phone_numbers"].forEach(function(num) {
-				phone_numbers.push(num);
-			});
-			result.send(phone_numbers);
+			if (numbers["available_phone_numbers"].length > 0) {
+				var phoneNumber = numbers["available_phone_numbers"][0];
+				request.cookies.account.phone = phoneNumber;
+				if (request.cookies.account) {
+					var name = request.cookies.account.name;
+					var sid = request.cookies.account.sid;
+					result.cookie("account", { name: name, sid: sid, phone: phoneNumber });
+					result.send("Account created!");
+				} else {
+					result.send("Improper cookies! Create an account first.");
+				}
+			} else {
+				result.send("Out of phone numbers!");
+			}
 		});
 
+	});
+
+	app.get('/new_account', function(request, result) {
+		var name = request.query.name;
+		var country = request.query.country;
+		client.accounts.create({
+			"friendlyName": name
+		}, function(err, account) {
+			result.cookie("account", { name: name, sid: account.sid });	
+			result.redirect('/new_number?country=' + country);
+		});
+	});
+
+	app.get('/party/:id', function(request, result) {
+		var phoneNumber = request.params.id;
+		result.cookie("phone", { number: phoneNumber });
+
+		result.send("Cookie set!");
 	});
 
 	app.get('/test', function(request, result) {
@@ -58,7 +86,14 @@ exports.setup = function(app) {
 			data.messages.forEach(function(msg) {
 				songs.push(new Song(msg));	
 			});
-			results.send(songs);
+			results.jsonp(songs);
 		});
+	});
+
+	app.get('/list', function(request, result) {
+		client.accounts.list({ status: "active" }, function(err, data) {
+			result.send(data.accounts);
+		});
+
 	});
 }
