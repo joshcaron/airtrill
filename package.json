@@ -1,0 +1,25 @@
+{
+  "name": "McJukebox",
+  "version": "0.0.0",
+  "description": "Let's DO IT",
+  "main": "router.js",
+  "dependencies": {
+    "express": "~3.4.8",
+    "soundclouder": "~0.7.10",
+    "twilio": "~1.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshcaron/McJukebox.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/joshcaron/McJukebox/issues"
+  }
+}
