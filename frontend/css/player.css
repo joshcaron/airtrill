@@ -27,7 +27,8 @@
 
 .cover {
   width: 40%;
-  float: right; }
+  float: right;
+  padding-bottom: 50px; }
   .cover .cover-heading {
     font-weight: 200;
     text-transform: lowercase; }
