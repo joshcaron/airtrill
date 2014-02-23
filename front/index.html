@@ -7,8 +7,12 @@
       {
         var num = Math.ceil( Math.random() * totalCount );
         var slogan = ['Crowdsource your playlist.', 'Enjoy the music.', 'Impress your friends.', 'Spice up your event.', 'Redouble happiness.', 'Listen better. Together.'];
-        $('body').css('background-image', 'url(img/' + num + '.jpg)');
+        $('body').css('background-image', 'url(backgrounds/' + num + '.jpg)');
         $('.cover-heading').text(slogan[num - 1]);
+      }
+      function scrollDown()
+      {
+        $("#playlist").animate({ scrollTop: 0 }, "slow");
       }
     </script>
     <meta charset="utf-8">
@@ -18,7 +22,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>juicebox</title>
+    <title>Jam With Juicebox</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,18 +53,21 @@
             <div class="inner">
               <h2 class="masthead-brand">juicebox.io</h3>
               <ul class="nav masthead-nav">
-                <li class="active"><a href="#">Playlist</a></li>
-                <li><a href="#">More</a></li>
+                <li class="active"><a href="">Playlist</a></li>
+                <li><a href="about.html">Info</a></li>
               </ul>
             </div>
           </div>
           <div class="inner cover">
-            <h1 class="cover-heading">Those With Slow-To-Load JQuery Will Know</h1>
+            <h1 class="cover-heading"></h1>
             <p class="lead">Text song requests to +1 617 555 1234</p>
             <p class="lead">
-              <a href="" class="btn btn-lg btn-default">CLICK HERE</a>
+              <a href="" class="btn btn-lg btn-default">STREAM MUSIC</a>
             </p>
           </div>
+        </div>
+
+        <div id="#playlist">
         </div>
 
       </div>
