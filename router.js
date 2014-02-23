@@ -1,3 +1,9 @@
+var Song = function(data) {
+	return {
+		song: data.body,
+		date: data.date_created
+	}
+}
 
 exports.setup = function(app) {
 
@@ -28,20 +34,25 @@ exports.setup = function(app) {
 		result.send("HEY");
 	});
 
-	// app.get('/lookup', function(request, result) {
-	// 	// var soundcloud = require('soundclouder');
-	// 	soundcloud.init('5829926db302ca49e853711971874eec', '894a5501f16d90b8c19c56130035ff4b', 'http://music.turtles.io/login');
-	// 	var code;
-	// 	soundcloud.auth(code, function (error, access_token) {
-	// 		if(error) {
-	// 			console.error(e.message);
-	// 		} else {
-	// 			console.log('access_token=' + access_token );
-	// 		}
-	// 	});
-	// });
+	app.post('/text', function(request, results) {
+		var text = request.body;
+		var song = text.Body;
+		console.log("Requested song: " + song);
+	});
 
-	// app.get('/login', function(request, result) {
+	app.get('/texts', function(request, results) {
+		var client = require('twilio')('AC98eb705703556ad95bc5cf7e4b1cbc8b', 'a198863452f1e840159ff4f102556c7f');
+		var callback = function() {
+			var messages = client.messages.list(function(err, data) {
+				var songs = [];
+				data.messages.forEach(function(msg) {
+					songs.push(new Songmsg));	
+				});
+				results.send(songs);
+			});
+		};
 
-	// });
+		callback();
+
+	});
 }
