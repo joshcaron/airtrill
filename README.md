@@ -26,3 +26,12 @@ Room for improvement:
 * Allow emailing songs - free even for those who don't have texting
 * Ensure songs keep playing even when users have not submitted
   anything - perhaps, by inference, so the service is never "dead"
+
+Airtrill was made over the span of 24 hours during McHacks, a hackathon at McGill university in Canada. 
+There is built-in support for having multiple "parties", i.e. different playlist/number combinations, however, 
+we were not able to get it to integrate with the frontend in time. 
+
+The site is live at http://airtrill.com/.
+
+If you have any questions about this, please contact me for more info. All the code is available on 
+Github at https://github.com/joshcaron/airtrill. 
